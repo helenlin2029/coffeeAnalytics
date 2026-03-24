@@ -71,7 +71,7 @@ button {
     display: grid;
     /* This makes buttons at least 250px wide, but they'll grow to fill the screen. 
        If the screen gets too small, they'll automatically wrap to a new line! */
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 16px;
     padding: 20px;
 }
@@ -92,5 +92,6 @@ button {
     width: 60px;
     height: auto;
     margin-left: 10px;
+    flex-shrink: 0;
 }
 
