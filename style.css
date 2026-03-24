@@ -1,0 +1,7 @@
+
+/* Basic Layout */
+    body { font-family: sans-serif; padding: 20px; background: #f4f1ea; }
+    .hidden { display: none; } /* This class hides elements */
+
+    .card { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    button { padding: 10px 20px; cursor: pointer; background: #6f4e37; color: white; border: none; border-radius: 5px; }
