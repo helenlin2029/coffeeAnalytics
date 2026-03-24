@@ -6,7 +6,7 @@
 
 h1 {
     display: flex;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     color: black;
     justify-content: center;
 }
@@ -68,11 +68,29 @@ button {
 }
 
 .menu-grid {
-    display: flex;
-    justify-content: center; 
-    gap: 15px;               
+    display: grid;
+    /* This makes buttons at least 250px wide, but they'll grow to fill the screen. 
+       If the screen gets too small, they'll automatically wrap to a new line! */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
     padding: 20px;
 }
 
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    min-height: 120px; /* Ensures all buttons have a consistent "thickness" */
+}
 
+.menu-item img {
+    width: 60px;
+    height: auto;
+    margin-left: 10px;
+}
 
