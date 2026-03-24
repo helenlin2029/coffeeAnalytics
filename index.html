@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Sales Analytics</title>
+    <style>
+        /* Basic Layout */
+        body { font-family: sans-serif; padding: 20px; background: #f4f1ea; }
+        .hidden { display: none; } /* This class hides elements */
+        
+        .card { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        button { padding: 10px 20px; cursor: pointer; background: #6f4e37; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <button onclick="showView('customer')">Customer Menu</button>
+        <button onclick="showView('owner')">Owner Dashboard</button>
+    </nav>
+
+    <hr>
+
+    <div id="customer-view">
+    <h1>Order Your Coffee</h1>
+    
+        <div class="menu-grid">
+            <button type="button" class="menu-item" onclick="placeOrder('Latte', 4.50)">
+                Latte <br> <span>$4.50</span>
+            </button>
+            
+            <button type="button" class="menu-item" onclick="placeOrder('Espresso', 3.00)">
+                Espresso <br> <span>$3.00</span>
+            </button>
+            
+            <button type="button" class="menu-item" onclick="placeOrder('Cappuccino', 4.00)">
+                Cappuccino <br> <span>$4.00</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="owner-view" class="hidden">
+        <h1>Owner Analytics</h1>
+        <div style="display: flex; gap: 20px;">
+            <div class="card">
+                <h3>Total Sales</h3>
+                <p id="sales-display">$0.00</p>
+            </div>
+            <div class="card">
+                <h3>Orders Today</h3>
+                <p id="count-display">0</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Logic to switch screens
+        function showView(viewName) {
+            const customerDiv = document.getElementById('customer-view');
+            const ownerDiv = document.getElementById('owner-view');
+
+            if (viewName === 'customer') {
+                customerDiv.classList.remove('hidden');
+                ownerDiv.classList.add('hidden');
+            } else {
+                ownerDiv.classList.remove('hidden');
+                customerDiv.classList.add('hidden');
+            }
+        }
+
+        // This array acts as our temporary database
+        let orders = [];
+        function showView(viewName) {
+            const customerView = document.getElementById('customer-view');
+            const ownerView = document.getElementById('owner-view');
+
+            if (viewName === 'customer') {
+                customerView.style.display = 'block';
+                ownerView.style.display = 'none';
+            } else {
+                ownerView.style.display = 'block';
+                customerView.style.display = 'none';
+                updateDashboard(); 
+            }
+        }
+    </script>
+</body>
+</html>
