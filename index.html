@@ -5,17 +5,22 @@
     <title>Coffee Sales Analytics</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-    <nav class="toggle-btn">
-        <button class="btn-switch" onclick="showView('customer')">Customer Menu</button>
-        <button class="btn-switch" onclick="showView('owner')">Owner Dashboard</button>
+
+<header>
+    <h1> <p>PALO ALTO ARTISAN</p> </h1>
+    <nav class="navigation">
+        <a href="#" onclick="goToHome()">HOME</a>
+        <a href="#">ABOUT US</a>
+        <a href="#">PRODUCTS</a>
+        <a href="#">CONTACT US</a>
+        <a href="#" onclick="showView('owner')">STAFF USE</a>
     </nav>
+</header>
 
-    <hr>
 
+<body>
     <div id="customer-view">
-    <h1>Place Order</h1>
         
         <div class="menu-grid">
             <button class="menu-item">
@@ -110,6 +115,14 @@
                 customerView.style.display = 'none';
                 updateDashboard(); 
             }
+        }
+
+        function goToHome() {
+            const home = document.getElementById('customer-view');
+            const analytics = document.getElementById('owner-view');
+
+            home.style.display = 'block';
+            analytics.style.display = 'none';
         }
     </script>
 </body>
