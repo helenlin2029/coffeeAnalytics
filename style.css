@@ -79,7 +79,7 @@ h3 {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-
+/* GRID AND BUTTONS */
 
 .main-content { 
     display: flex;
@@ -99,12 +99,10 @@ h3 {
 }
 
 .menu-item {
-    /* Keep your existing layout properties */
     flex: 0 0 calc(50% - 20px);
     display: flex;
-    align-items: center; /* Vertical alignment */
+    align-items: center; 
 
-    /* Keep your existing style properties (border, padding, radius, etc.) */
     background: white;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
@@ -125,14 +123,12 @@ h3 {
 
 
 .item-text {
-    flex: 1;                /* Occupies remaining horizontal space */
+    flex: 1;            
     display: flex;
     flex-direction: column;
-    align-items: center;    /* Horizontal centering */
-    justify-content: center;/* Vertical centering */
+    align-items: center;   
+    justify-content: center;
     text-align: center;
-    
-    /* ADD THIS: Prevents the text from stretching the button vertically */
     align-self: center; 
 }
 
