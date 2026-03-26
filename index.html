@@ -21,56 +21,98 @@
 
 <body>
     <div id="customer-view">
+        <div class="description">
+            <h2>Experience the harmony of bold, sun-drenched espresso and velvet-textured milks. Our most-loved
+                beverages are more than just a morning ritual; they are a celebration of complex flavor profiles 
+                and artisanal techniques that honor the journey from farm to cup. </h2>
+        </div>
         
-        <div class="menu-grid">
-            <button class="menu-item">
-                <div class="text-content">
-                    <h3>Iced Caramel Macchiato</h3>
-                    <p>Made to spec, every time.</p>
-                </div>
-                <img src="images/iced-caramel-macchiato.png" alt="Drink">
-            </button>
-  
-            <button class="menu-item">
-                <div class="text-content">
-                    <h3>Latte</h3>
-                    <p>Made to spec, every time.</p>
-                </div>
-                <img src="images/latte.png" alt="Drink">
-            </button>
+        <div class="main-content">
+            <div class="menu-grid">
+                <button class="menu-item" item-name="Iced Caramel Macchiato" item-price="6.50">
+                    <div class="text-content">
+                        <div class="item-text">
+                            <h3>Iced Caramel Macchiato</h3>
+                            <p>Made to spec, every time.</p>
+                        </div>
+                    </div>
+                    <div class="price-add"> 
+                        
+                    </div>
+                    <img src="images/iced-caramel-macchiato.png" alt="Drink">
+                </button>
+    
+                <button class="menu-item" item-name="Latte" item-price="5.50">
+                    <div class="text-content">
+                        <div class="item-text">
+                            <h3>Latte</h3>
+                            <p>Made to spec, every time.</p>
+                        </div>
+                    </div>
+                    <img src="images/latte.png" alt="Drink">
+                </button>
 
-            <button class="menu-item">
-                <div class="text-content">
-                    <h3>Matcha Latte</h3>
-                    <p>Made to spec, every time.</p>
-                </div>
-                <img src="images/matcha-latte.png" alt="Drink">
-            </button>
+                <button class="menu-item" item-name="Matcha Latte" item-price="6.50">
+                    <div class="text-content">
+                        <div class="item-text">
+                            <h3>Matcha Latte</h3>
+                            <p>Made to spec, every time.</p>
+                        </div>
+                    </div>
+                    <img src="images/matcha-latte.png" alt="Drink">
+                </button>
 
-            <button class="menu-item">
-                <div class="text-content">
-                    <h3>Cold Brew</h3>
-                    <p>Made to spec, every time.</p>
-                </div>
-                <img src="images/cold-brew.png" alt="Drink">
-            </button>
+                <button class="menu-item" item-name="Cold Brew" item-price="4.50">
+                    <div class="text-content">
+                        <div class="item-text">
+                            <h3>Cold Brew</h3>
+                            <p>Made to spec, every time.</p>
+                        </div>
+                    </div>
+                    <img src="images/cold-brew.png" alt="Drink">
+                </button>
 
-            <button class="menu-item">
-                <div class="text-content">
-                    <h3>Mango Passionfruit Tea</h3>
-                    <p>Made to spec, every time.</p>
-                </div>
-                <img src="images/mango-passionfruit-tea.png" alt="Drink">
-            </button>
+                <button class="menu-item" item-name="Mango Passionfruit Tea" item-price="6.50">
+                    <div class="text-content">
+                        <div class="item-text">
+                            <h3>Mango Passionfruit Tea</h3>
+                            <p>Made to spec, every time.</p>
+                        </div>
+                    </div>
+                    <img src="images/mango-passionfruit-tea.png" alt="Drink">
+                </button>
 
-            <button class="menu-item">
-                <div class="text-content">
-                    <h3>Americano</h3>
-                    <p>Made to spec, every time.</p>
+                <button class="menu-item" item-name="Americano" item-price="5.00">
+                    <div class="text-content">
+                        <div class="item-text"> 
+                            <h3>Americano</h3>
+                            <p>Made to spec, every time.</p>
+                        </div>
+                    </div>
+                    <img src="images/americano.png" alt="Drink">
+                </button>
+            </div>
+
+            <div class="checkout">
+                <h2>Your Order</h2>
+    
+                <div class="order-list" id="order-list"></div>
+
+                <div class="checkout-footer">
+                    <div class="total-row">
+                        <span>Total:</span>
+                        <span id="order-total">$0.00</span>
+                    </div>
+                    <button class="checkout-btn">Checkout</button>
                 </div>
-                <img src="images/americano.png" alt="Drink">
-            </button>
+            </div>
+        </div>
+
+        <div class="about-us"
+            
+        </div>
     </div>
+
 
     <div id="owner-view" class="hidden">
         <h1>Owner Analytics</h1>
