@@ -52,16 +52,41 @@ buttons.forEach(button => {
         const name = button.getAttribute('item-name');
         const price = parseFloat(button.getAttribute('item-price'));
 
-        const newItem = document.createElement('div');
-        newItem.classList.add('order-item');
-        newItem.innerHTML = `
-            <span>${name}</span>
-            <span>$${price.toFixed(2)}</span>
-        `;
+        const existingItem = orderList.querySelector(`[data-item-id="${name}"]`);
 
-        orderList.appendChild(newItem);
+        if (existingItem) {
+            const qtyElement = existingItem.querySelector('.qty');
+            let currentQty = parseInt(qtyElement.innerText);
+            qtyElement.innerText = currentQty + 1;
+        } else {
+            const newItem = document.createElement('div');
+            newItem.classList.add('order-item');
+            
+            newItem.setAttribute('data-item-id', name);
+            
+            newItem.innerHTML = `
+                <span><span class="qty">1</span>x ${name}</span>
+                <span>$${price.toFixed(2)}</span>
+            `;
+            
+            orderList.appendChild(newItem);
+        }
 
         currentTotal += price;
         totalDisplay.innerText = `$${currentTotal.toFixed(2)}`;
     });
+});
+
+
+const clearBtn = document.getElementById('clear-cart-btn');
+
+clearBtn.addEventListener('click', () => {
+    // 1. Clear the visual list in the checkout box
+    orderList.innerHTML = '';
+    
+    // 2. Reset the mathematical total back to zero
+    currentTotal = 0;
+    
+    // 3. Update the total display text
+    totalDisplay.innerText = `$0.00`;
 });
