@@ -77,16 +77,42 @@ buttons.forEach(button => {
     });
 });
 
-
 const clearBtn = document.getElementById('clear-cart-btn');
 
 clearBtn.addEventListener('click', () => {
-    // 1. Clear the visual list in the checkout box
     orderList.innerHTML = '';
-    
-    // 2. Reset the mathematical total back to zero
     currentTotal = 0;
-    
-    // 3. Update the total display text
     totalDisplay.innerText = `$0.00`;
+});
+
+
+//send data to backend
+
+
+const checkoutBtn = document.querySelector('.checkout-btn');
+
+checkoutBtn.addEventListener('click', async () => {
+    // This object 'orderData' is what Python receives as 'request.json'
+    const orderData = {
+        order_items: [
+            { name: "Iced Latte", price: 4.50, quantity: 1 },
+            { name: "Croissant", price: 3.25, quantity: 2 }
+        ]
+    };
+
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log("Success:", result.status);
+            alert("Order Successful!");
+        }
+    } catch (error) {
+        console.error("Connection Error:", error);
+    }
 });
