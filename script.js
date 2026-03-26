@@ -92,7 +92,6 @@ clearBtn.addEventListener('click', () => {
 const checkoutBtn = document.querySelector('.checkout-btn');
 
 checkoutBtn.addEventListener('click', async () => {
-    // This object 'orderData' is what Python receives as 'request.json'
     const orderData = {
         order_items: [
             { name: "Iced Latte", price: 4.50, quantity: 1 },
@@ -111,6 +110,9 @@ checkoutBtn.addEventListener('click', async () => {
             const result = await response.json();
             console.log("Success:", result.status);
             alert("Order Successful!");
+            orderList.innerHTML = '';
+            currentTotal = 0;
+            totalDisplay.innerText = `$0.00`;
         }
     } catch (error) {
         console.error("Connection Error:", error);
