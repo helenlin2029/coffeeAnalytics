@@ -88,7 +88,6 @@ clearBtn.addEventListener('click', () => {
 
 //send data to backend
 
-
 const checkoutBtn = document.querySelector('.checkout-btn');
 
 checkoutBtn.addEventListener('click', async () => {
@@ -114,6 +113,7 @@ checkoutBtn.addEventListener('click', async () => {
             currentTotal = 0;
             totalDisplay.innerText = `$0.00`;
         }
+
     } catch (error) {
         console.error("Connection Error:", error);
     }
