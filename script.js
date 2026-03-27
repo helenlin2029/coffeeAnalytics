@@ -1,44 +1,48 @@
-// Logic to switch screens
-function showView(viewName) {
-    const customerDiv = document.getElementById('customer-view');
-    const ownerDiv = document.getElementById('owner-view');
-
-    if (viewName === 'customer') {
-        customerDiv.classList.remove('hidden');
-        ownerDiv.classList.add('hidden');
-    } else {
-        ownerDiv.classList.remove('hidden');
-        customerDiv.classList.add('hidden');
-    }
-}
-
-
-
-let orders = [];
 function showView(viewName) {
     const customerView = document.getElementById('customer-view');
     const ownerView = document.getElementById('owner-view');
+    const aboutUsView = document.getElementById('about-us-view');
+    const productsView = document.getElementById('products-view');
+    const contactView = document.getElementById('contact-view');
 
     if (viewName === 'customer') {
         customerView.style.display = 'block';
         ownerView.style.display = 'none';
-    } else {
-        ownerView.style.display = 'block';
-        customerView.style.display = 'none';
-        updateDashboard(); //later
+        aboutUsView.style.display = 'none';
+        productsView.style.display = 'none';
+        contactView.style.display = 'none';
     }
+    if (viewName === 'about') {
+        customerView.style.display = 'none';
+        ownerView.style.display = 'none';
+        aboutUsView.style.display = 'block';
+        productsView.style.display = 'none';
+        contactView.style.display = 'none';
+    }
+    if (viewName === 'owner') {
+        customerView.style.display = 'none';
+        ownerView.style.display = 'block';
+        aboutUsView.style.display = 'none';
+        productsView.style.display = 'none';
+        contactView.style.display = 'none';
+    }
+    if (viewName === 'products') {
+        customerView.style.display = 'none';
+        ownerView.style.display = 'none';
+        aboutUsView.style.display = 'none';
+        productsView.style.display = 'block';
+        contactView.style.display = 'none';
+    }
+    if (viewName === 'contact') {
+        customerView.style.display = 'none';
+        ownerView.style.display = 'none';
+        aboutUsView.style.display = 'none';
+        productsView.style.display = 'none';
+        contactView.style.display = 'block';
+    }
+
+    updateDashboard(); //later
 }
-
-
-
-function goToHome() {
-    const home = document.getElementById('customer-view');
-    const analytics = document.getElementById('owner-view');
-
-    home.style.display = 'block';
-    analytics.style.display = 'none';
-}
-
 
 
 const buttons = document.querySelectorAll('.menu-item');

@@ -10,10 +10,10 @@
 <header>
     <h1> <p>PALO ALTO ARTISAN</p> </h1>
     <nav class="navigation">
-        <a href="#" onclick="goToHome()">HOME</a>
-        <a href="#">ABOUT US</a>
-        <a href="#">PRODUCTS</a>
-        <a href="#">CONTACT US</a>
+        <a href="#" onclick="showView('customer')">HOME</a>
+        <a href="#" onclick="showView('about')">ABOUT US</a>
+        <a href="#" onclick="showView('products')">PRODUCTS</a>
+        <a href="#" onclick="showView('contact')">CONTACT US</a>
         <a href="#" onclick="showView('owner')">STAFF USE</a>
     </nav>
 </header>
@@ -109,8 +109,111 @@
             </div>
         </div>
 
-        <div class="about-us"
-            
+    </div>
+
+
+    <div id="about-us-view" class="hidden">
+        <div class="about-us-text">
+            <h2>HISTORY</h2>
+            <br>
+            <h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec magna enim. Integer non purus et enim mollis pulvinar. 
+                Ut rutrum id nulla in lobortis. Pellentesque dignissim iaculis ex non pulvinar. Fusce accumsan enim ex, sed tincidunt nisl placerat ut. 
+                In eget lorem odio. Duis erat tortor, mollis in orci a, dapibus aliquam magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Morbi faucibus dignissim quam, in lacinia metus placerat sit amet. Quisque ullamcorper eu neque at fringilla. 
+                Curabitur auctor erat quis lorem pulvinar, sed tincidunt nibh mattis. Praesent in felis in nibh cursus tincidunt.
+            </h3>
+        </div>
+        <div class="about-us-text"">
+            <h2>PRODUCTS</h2>
+            <br>
+            <h3>
+                Mauris in rhoncus eros, sed dignissim enim. In tempor, est sit amet dapibus sodales, leo ipsum lacinia dui, ac consectetur 
+                magna massa vel quam. Etiam ut rutrum ante. Cras eleifend nisi in consectetur convallis. Nunc molestie accumsan tellus at euismod. 
+                In hac habitasse platea dictumst. Suspendisse blandit, urna a rutrum euismod, nibh diam luctus nibh, ut lacinia enim nisl in sem. 
+                Suspendisse ac vehicula est, sed feugiat felis. Nulla vel risus ut dui suscipit condimentum. Maecenas sed nibh aliquam, hendrerit 
+                purus sit amet, accumsan ex. Quisque efficitur hendrerit purus. Vivamus volutpat mi ut ultrices aliquet.    
+            </h3>
+        </div>
+        <div class="about-us-text">
+            <h2>PROCESS</h2>
+            <br>
+            <h3> 
+                Duis molestie nisi vel ipsum pellentesque volutpat quis semper elit. Nam tincidunt magna quis dui tincidunt malesuada vel a erat. 
+                Donec fringilla turpis tortor, eget pharetra ex bibendum in. Nulla facilisi. Proin ornare ante dui, eu gravida sem vulputate quis. 
+                Nulla facilisi. Mauris sit amet dui dapibus, aliquet ligula et, blandit risus. In blandit, nunc at blandit imperdiet, nisi mi eleifend nisi, 
+                laoreet elementum lacus lectus eget enim. Sed egestas non nunc ac gravida. Nullam ultricies gravida est a ultricies.
+                Nulla a rhoncus ex. Aenean felis ex, venenatis at tincidunt vitae, lacinia nec tellus.
+            </h3>
+        </div>
+        </div>
+    </div>
+
+
+    <div id="products-view" class="hidden">
+        <div class="about-us-text">
+            <h2>ICED CARAMEL MACCHIATO</h2>
+            <br>
+            <h3>
+                Etiam ut rutrum ante. Cras eleifend nisi in consectetur convallis. Nunc molestie accumsan tellus at euismod. In hac habitasse platea dictumst. 
+                Suspendisse blandit, urna a rutrum euismod, nibh diam luctus nibh, ut lacinia enim nisl in sem. 
+            </h3>
+        </div>
+        <div class="about-us-text">
+            <h2>LATTE</h2>
+            <br>
+            <h3>
+                Etiam ut rutrum ante. Cras eleifend nisi in consectetur convallis. Nunc molestie accumsan tellus at euismod. In hac habitasse platea dictumst. 
+                Suspendisse blandit, urna a rutrum euismod, nibh diam luctus nibh, ut lacinia enim nisl in sem. 
+            </h3>
+        </div>
+        <div class="about-us-text">
+            <h2>MATCHA LATTE</h2>
+            <br>
+            <h3>
+                Etiam ut rutrum ante. Cras eleifend nisi in consectetur convallis. Nunc molestie accumsan tellus at euismod. In hac habitasse platea dictumst. 
+                Suspendisse blandit, urna a rutrum euismod, nibh diam luctus nibh, ut lacinia enim nisl in sem. 
+            </h3>
+        </div>
+        <div class="about-us-text">
+            <h2>COLD BREW</h2>
+            <br>
+            <h3>
+                Etiam ut rutrum ante. Cras eleifend nisi in consectetur convallis. Nunc molestie accumsan tellus at euismod. In hac habitasse platea dictumst. 
+                Suspendisse blandit, urna a rutrum euismod, nibh diam luctus nibh, ut lacinia enim nisl in sem. 
+            </h3>
+        </div>
+        <div class="about-us-text">
+            <h2>MANGO PASSIONFRUIT TEA</h2>
+            <br>
+            <h3>
+                Etiam ut rutrum ante. Cras eleifend nisi in consectetur convallis. Nunc molestie accumsan tellus at euismod. In hac habitasse platea dictumst. 
+                Suspendisse blandit, urna a rutrum euismod, nibh diam luctus nibh, ut lacinia enim nisl in sem. 
+            </h3>
+        </div>
+        <div class="about-us-text">
+            <h2>AMERICANO</h2>
+            <br>
+            <h3>
+                Etiam ut rutrum ante. Cras eleifend nisi in consectetur convallis. Nunc molestie accumsan tellus at euismod. In hac habitasse platea dictumst. 
+                Suspendisse blandit, urna a rutrum euismod, nibh diam luctus nibh, ut lacinia enim nisl in sem. 
+            </h3>
+        </div>
+    </div>
+
+
+    <div id="contact-view" class="hidden">
+        <div class="contact-box">
+            <h3>EMAIL</h3>
+            <h2>someHandle@biz.org</h2>
+        </div>
+        <div class="contact-box">
+            <h3>INSTAGRAM</h3>
+            <h2>@someHandle</h2>
+        </div>
+        <div class="contact-box">
+            <h3>YOUTUBE</h3>
+            <h2>@someHandle</h2>
         </div>
     </div>
 
