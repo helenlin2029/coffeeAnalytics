@@ -33,7 +33,7 @@
                     
                     <div class="item-text">
                         <h3>Iced Caramel Macchiato</h3>
-                        <p>6.5</p>
+                        <p>6.5</p>`
                     </div>
                     
                     <div class="price-add"> 
@@ -219,18 +219,15 @@
 
 
     <div id="owner-view" class="hidden">
-        <h1>Owner Analytics</h1>
-        <div style="display: flex; gap: 20px;">
-            <div class="card">
-                <h3>Total Sales</h3>
-                <p id="sales-display">$0.00</p>
-            </div>
-            <div class="card">
-                <h3>Orders Today</h3>
-                <p id="count-display">0</p>
-            </div>
+        <button id="refresh-stats">Refresh Business Stats</button>
+        
+        <div id="stats-content" style="margin-top: 20px;">
+            <h3>Total Revenue: $<span id="stat-revenue">0.00</span></h3>
+            <h3>Busiest Hour: <span id="stat-hour">N/A</span>:00</h3>
+            <h3>Item Popularity:</h3>
+            <ul id="stat-list"></ul>
         </div>
-    </div>
+    </div> 
     
     <script src="script.js"></script>
 

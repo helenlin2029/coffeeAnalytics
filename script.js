@@ -122,3 +122,28 @@ checkoutBtn.addEventListener('click', async () => {
         console.error("Connection Error:", error);
     }
 });
+
+
+async function updateDashboard() {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/stats');
+        const data = await response.json();
+
+        document.getElementById('stat-revenue').innerText = data.total_revenue;
+        document.getElementById('stat-hour').innerText = data.busiest_hour;
+
+        const list = document.getElementById('stat-list');
+        list.innerHTML = ''; 
+        
+        data.popularity.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item[0]}: ${item[1]} sold`;
+            list.appendChild(li);
+        });
+
+    } catch (error) {
+        console.error("Error fetching stats:", error);
+    }
+}
+
+document.getElementById('refresh-stats').addEventListener('click', updateDashboard);

@@ -237,3 +237,12 @@ h3 {
     border: 0.5px solid black;
     border-radius: 7px;
 }
+
+/* STAFF USE */
+
+.owner-view {
+    background: #fdfbf7;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #e0dcd0;
+}
