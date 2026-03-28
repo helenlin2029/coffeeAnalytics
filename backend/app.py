@@ -14,7 +14,7 @@ def handle_checkout():
     
     new_order = {
         "items": items,
-        "timestamp": datetime.now(),
+        "timestamp": datetime.now(), 
         "hour": datetime.now().hour
     }
     
