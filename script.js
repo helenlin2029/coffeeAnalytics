@@ -41,14 +41,13 @@ function showView(viewName) {
         contactView.style.display = 'block';
     }
 
-    updateDashboard(); //later
+    updateDashboard(); 
 }
 
 
 const buttons = document.querySelectorAll('.menu-item');
-const orderList = document.querySelector('.order-list');
+const orderList = document.getElementById('order-list'); 
 const totalDisplay = document.querySelector('.total-row span:last-child');
-
 let currentTotal = 0;
 
 buttons.forEach(button => {
@@ -61,18 +60,46 @@ buttons.forEach(button => {
         if (existingItem) {
             const qtyElement = existingItem.querySelector('.qty');
             let currentQty = parseInt(qtyElement.innerText);
-            qtyElement.innerText = currentQty + 1;
+            const newQty = currentQty + 1;
+            qtyElement.innerText = newQty;
+
+            const priceElement = existingItem.querySelector('.item-price');
+            priceElement.innerText = `$${(price * newQty).toFixed(2)}`;
         } else {
             const newItem = document.createElement('div');
             newItem.classList.add('order-item');
-            
             newItem.setAttribute('data-item-id', name);
-            
+
             newItem.innerHTML = `
-                <span><span class="qty">1</span>x ${name}</span>
-                <span>$${price.toFixed(2)}</span>
+                <div class="item-info">
+                    <span class="qty">1</span>x <span class="item-name">${name}</span>
+                </div>
+                <div class="item-actions">
+                    <span class="item-price">$${price.toFixed(2)}</span>
+                    <button class="remove-btn">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
             `;
-            
+
+            const delBtn = newItem.querySelector('.remove-btn');
+            delBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const qtyElement = newItem.querySelector('.qty');
+                let qty = parseInt(qtyElement.innerText);
+
+                currentTotal -= price;
+                totalDisplay.innerText = `$${Math.max(0, currentTotal).toFixed(2)}`;
+
+                if (qty > 1) {
+                    const newQty = qty - 1;
+                    qtyElement.innerText = newQty;
+                    newItem.querySelector('.item-price').innerText = `$${(price * newQty).toFixed(2)}`;
+                } else {
+                    newItem.remove();
+                }
+            });
+
             orderList.appendChild(newItem);
         }
 
@@ -81,45 +108,65 @@ buttons.forEach(button => {
     });
 });
 
-const clearBtn = document.getElementById('clear-cart-btn');
-
-clearBtn.addEventListener('click', () => {
-    orderList.innerHTML = '';
-    currentTotal = 0;
-    totalDisplay.innerText = `$0.00`;
-});
-
 
 //send data to backend
 
 const checkoutBtn = document.querySelector('.checkout-btn');
 
 checkoutBtn.addEventListener('click', async () => {
+    const actualItems = [];
+    
+    const cartDivs = orderList.querySelectorAll('.order-item'); 
+
+    cartDivs.forEach(div => {
+        const name = div.getAttribute('data-item-id');
+        const qtyElement = div.querySelector('.qty');
+        const quantity = parseInt(qtyElement.innerText);
+
+        const spans = div.querySelectorAll('span');
+        const priceText = div.querySelector('.item-price').innerText;
+        const price = parseFloat(priceText.replace('$', ''));
+
+        actualItems.push({
+            name: name,
+            price: price,
+            quantity: quantity
+        });
+    });
+
+    if (actualItems.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
     const orderData = {
-        order_items: [
-            { name: "Iced Latte", price: 4.50, quantity: 1 },
-            { name: "Croissant", price: 3.25, quantity: 2 }
-        ]
+        order_items: actualItems
     };
 
     try {
         const response = await fetch('http://127.0.0.1:5000/api/checkout', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(orderData)
         });
 
         if (response.ok) {
             const result = await response.json();
             console.log("Success:", result.status);
+            
             alert("Order Successful!");
-            orderList.innerHTML = '';
-            currentTotal = 0;
-            totalDisplay.innerText = `$0.00`;
+            orderList.innerHTML = ''; 
+            totalDisplay.innerText = '$0.00'; 
+            currentTotal = 0; 
+        } else {
+            alert("Server error. Please try again.");
         }
 
     } catch (error) {
         console.error("Connection Error:", error);
+        alert("Python app not running?");
     }
 });
 
@@ -134,16 +181,19 @@ async function updateDashboard() {
 
         const list = document.getElementById('stat-list');
         list.innerHTML = ''; 
-        
         data.popularity.forEach(item => {
             const li = document.createElement('li');
             li.textContent = `${item[0]}: ${item[1]} sold`;
             list.appendChild(li);
         });
 
+        console.log("Stats updated at: " + new Date().toLocaleTimeString());
     } catch (error) {
-        console.error("Error fetching stats:", error);
+        console.error("Auto-update failed:", error);
     }
 }
 
-document.getElementById('refresh-stats').addEventListener('click', updateDashboard);
+updateDashboard();
+
+// run it every 5 seconds (5000 milliseconds)
+setInterval(updateDashboard, 5000);
