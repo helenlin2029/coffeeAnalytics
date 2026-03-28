@@ -73,7 +73,7 @@ h3 {
     font-weight: 100;
 }
 
-.hidden { display: none; } /* Hides elements */
+.hidden { display: none; } 
 
 .card { 
     background: white; 
@@ -159,12 +159,40 @@ h3 {
 
 .order-item {
     display: flex;
-    justify-content: space-between; 
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
-    font-family: 'Georgia', serif;
-    font-size: 16px;
-    color: #333;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    width: 120px;
+}
+
+.item-name {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: rgb(82, 81, 81);
+    font-weight: 100;
+}
+.item-price {
+    min-width: 60px;
+    text-align: right;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: rgb(82, 81, 81);
+    font-weight: 100;
+}
+
+.qty {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: rgb(82, 81, 81);
+    font-weight: 100;
 }
 
 .checkout-footer {
@@ -212,6 +240,26 @@ h3 {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #5f5f5f;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.remove-btn:hover {
+    color: #5f5f5f; 
+    transform: scale(1.2); 
+}
+
+
+.remove-btn i {
+    pointer-events: none; 
 }
 
 /* ABOUT US AND PRODUCTS*/
