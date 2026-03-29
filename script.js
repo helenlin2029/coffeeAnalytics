@@ -197,3 +197,121 @@ updateDashboard();
 
 // run it every 5 seconds (5000 milliseconds)
 setInterval(updateDashboard, 5000);
+
+
+
+
+
+// chart
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Get the canvas context - using 'freq-chart' to match your HTML
+    const canvasElement = document.getElementById('freq-chart');
+    
+    // Safety check: Make sure the element actually exists
+    if (!canvasElement) {
+        console.error("Could not find canvas with ID 'freq-chart'. Check your HTML!");
+        return;
+    }
+    
+    const ctx = canvasElement.getContext('2d');
+
+    // 2. Initialize the Chart
+    // We define this as 'const' inside the listener so loadGraphData can access it
+    const activityChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [], // Filled by fetch
+            datasets: [{
+                label: 'Order Volume',
+                data: [], // Filled by fetch
+                borderColor: '#6F4E37',
+                backgroundColor: 'rgba(111, 78, 55, 0.1)',
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#6F4E37',
+                pointRadius: 4,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: '#6F4E37',
+                        font: { size: 14, family: 'serif' }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    display: true, // Force display
+                    ticks: {
+                        color: '#4a3728', // Darker coffee brown
+                        font: { size: 12 },
+                        padding: 10 // Pushes numbers away from the line
+                    },
+                    title: {
+                        display: true,
+                        text: 'Number of Orders',
+                        color: '#4a3728',
+                        font: { size: 14, weight: 'bold' }
+                    }
+                },
+                x: {
+                    display: true, // Ensure the axis is turned on
+                    grid: {
+                        display: false // Keeps the background clean
+                    },
+                    ticks: {
+                        autoSkip: false,   // Force every hour to show up
+                        maxRotation: 0,    // Keep them horizontal
+                        color: '#6F4E37',  // Ensure they aren't white-on-white
+                        font: { size: 10 }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Time of Day',
+                        color: '#6F4E37',
+                        font: { family: 'serif', weight: 'bold' }
+                    }
+                }
+            }
+        }
+    });
+
+    // 3. Define the Fetch Function INSIDE the listener
+    // This allows it to "see" the activityChart variable defined above
+    function loadGraphData() {
+        fetch('/api/cafe-activity')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+            console.log("Python sent this data:", data); // This will show in your console
+
+            // 1. Explicitly clear any old data
+            activityChart.data.labels = [];
+            activityChart.data.datasets[0].data = [];
+
+            // 2. Inject the new data using the exact names from your Python return
+            // We use .push(...) to ensure the array updates correctly
+            data.labels.forEach(label => activityChart.data.labels.push(label));
+            data.values.forEach(val => activityChart.data.datasets[0].data.push(val));
+
+            // 3. Force the chart to recalculate its axes and redraw
+            activityChart.update();
+        })
+            
+            .catch(error => {
+                console.error('Error fetching graph data:', error);
+            });
+    }
+
+    // 4. Run the fetch immediately on page load
+    loadGraphData();
+});
